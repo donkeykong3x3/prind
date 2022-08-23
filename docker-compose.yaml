@@ -74,25 +74,25 @@ services:
 
   ## Frontends
   ##
-  octoprint:
-    image: octoprint/octoprint:minimal
-    restart: unless-stopped
-    depends_on:
-      klipper-priv:
-        condition: service_started
-    privileged: true
-    volumes:
-      - /dev:/dev
-      - run:/opt/run
-      - octoprint:/octoprint
-      - my_config/octoprint.yaml:/octoprint/octoprint/config.yaml
-    profiles:
-      - octoprint
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.services.octoprint.loadbalancer.server.port=5000"
-      - "traefik.http.routers.octoprint.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.octoprint.entrypoints=web"
+  # octoprint:
+    # image: octoprint/octoprint:minimal
+    # restart: unless-stopped
+    # depends_on:
+      # klipper-priv:
+        # condition: service_started
+    # privileged: true
+    # volumes:
+      # - /dev:/dev
+      # - run:/opt/run
+      # - octoprint:/octoprint
+      # - my_config/octoprint.yaml:/octoprint/octoprint/config.yaml
+    # profiles:
+      # - octoprint
+    # labels:
+      # - "traefik.enable=true"
+      # - "traefik.http.services.octoprint.loadbalancer.server.port=5000"
+      # - "traefik.http.routers.octoprint.rule=PathPrefix(`/`)"
+      # - "traefik.http.routers.octoprint.entrypoints=web"
 
   fluidd:
     image: cadriel/fluidd:latest
