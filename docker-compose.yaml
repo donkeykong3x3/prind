@@ -4,9 +4,9 @@ x-klipper-svc: &klipper-svc
   restart: unless-stopped
   logging:
     driver: none
-  # depends_on:
-    # init:
-      # condition: service_completed_successfully
+  depends_on:
+    init:
+      condition: service_completed_successfully
   command: -I run/klipper.tty -a run/klipper.sock cfg/printer.cfg -l log/klippy.log
 
 ## Service Definitions
@@ -48,8 +48,8 @@ services:
       driver: none
     command: -c cfg/moonraker.cfg -l log/moonraker.log
     depends_on:
-      # init:
-        # condition: service_completed_successfully
+      init:
+        condition: service_completed_successfully
       klipper:
         condition: service_started
     volumes:
@@ -61,7 +61,7 @@ services:
       - gcode:/opt/gcode
       - log:/opt/log
       - moonraker-db:/opt/db
-      - my_config:/opt/cfg:rw
+      - my_config:/opt/cfg
     # profiles:
       # - fluidd
       # - mainsail
@@ -130,13 +130,13 @@ services:
   ## Accompanying Services/Infra
   ##
 
-  ## Config dir needs to be writable by uid/gid 1000
-  ## This container sets the right permissions and exits
-  # init:
-    # image: busybox:latest
-    # command: chown -R 1000:1000 /prind/config
-    # volumes:
-      # - /var/lib/docker/volumes/S1_prind/_data:/prind
+  # Config dir needs to be writable by uid/gid 1000
+  # This container sets the right permissions and exits
+  init:
+    image: busybox:latest
+    command: chown -R 1000:1000 /opt/cfg
+    volumes:
+      - my_config:/opt/cfg
 
   ## Loadbalancer/Proxy
   traefik:
