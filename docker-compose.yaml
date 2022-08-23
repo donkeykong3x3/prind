@@ -61,7 +61,7 @@ services:
       - gcode:/opt/gcode
       - log:/opt/log
       - moonraker-db:/opt/db
-      - my_config:/opt/cfg
+      - my_config:/opt/.cfg
     # profiles:
       # - fluidd
       # - mainsail
