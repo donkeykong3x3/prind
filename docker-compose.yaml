@@ -4,7 +4,7 @@ x-klipper-svc: &klipper-svc
   restart: unless-stopped
   logging:
     driver: none
-  depends_on:
+  # depends_on:
     # init:
       # condition: service_completed_successfully
   command: -I run/klipper.tty -a run/klipper.sock cfg/printer.cfg -l log/klippy.log
