@@ -154,8 +154,9 @@ services:
 
 volumes:
   my_config:
-    external: true
-    name: S1_config
+    read_only: false
+    #external: true
+    #name: S1_config
   run:
     driver_opts:
       type: tmpfs
