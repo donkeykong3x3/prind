@@ -5,8 +5,8 @@ x-klipper-svc: &klipper-svc
   logging:
     driver: none
   depends_on:
-    init:
-      condition: service_completed_successfully
+    # init:
+      # condition: service_completed_successfully
   command: -I run/klipper.tty -a run/klipper.sock cfg/printer.cfg -l log/klippy.log
 
 ## Service Definitions
@@ -48,8 +48,8 @@ services:
       driver: none
     command: -c cfg/moonraker.cfg -l log/moonraker.log
     depends_on:
-      init:
-        condition: service_completed_successfully
+      # init:
+        # condition: service_completed_successfully
       klipper:
         condition: service_started
     volumes:
