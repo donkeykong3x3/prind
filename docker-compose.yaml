@@ -108,6 +108,7 @@ services:
   mainsail:
     image: ghcr.io/mainsail-crew/mainsail:edge
     restart: unless-stopped
+    pid: host
     # profiles:
       # - mainsail
     labels:
