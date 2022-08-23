@@ -61,7 +61,7 @@ services:
       - gcode:/opt/gcode
       - log:/opt/log
       - moonraker-db:/opt/db
-      - my_config:/opt/cfg
+      - my_config:/opt/cfg:rw
     # profiles:
       # - fluidd
       # - mainsail
@@ -154,7 +154,6 @@ services:
 
 volumes:
   my_config:
-    - read_only: false
     #external: true
     #name: S1_config
   run:
