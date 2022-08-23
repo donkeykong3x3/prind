@@ -17,7 +17,7 @@ services:
   klipper:
     <<: *klipper-svc
     volumes:
-      - ./config:/opt/cfg
+      - /var/lib/docker/volumes/S1_prind/_data/config:/opt/cfg
       - run:/opt/run
       - gcode:/opt/gcode
       - log:/opt/log
@@ -31,7 +31,7 @@ services:
     privileged: true
     volumes:
       - /dev:/dev
-      - ./config:/opt/cfg
+      - /var/lib/docker/volumes/S1_prind/_data/config:/opt/cfg
       - run:/opt/run
       - gcode:/opt/gcode
       - log:/opt/log
@@ -61,7 +61,7 @@ services:
       - gcode:/opt/gcode
       - log:/opt/log
       - moonraker-db:/opt/db
-      - ./config:/opt/cfg
+      - /var/lib/docker/volumes/S1_prind/_data/config:/opt/cfg
     profiles:
       - fluidd
       - mainsail
@@ -85,7 +85,7 @@ services:
       - /dev:/dev
       - run:/opt/run
       - octoprint:/octoprint
-      - ./config/octoprint.yaml:/octoprint/octoprint/config.yaml
+      - /var/lib/docker/volumes/S1_prind/_data/config/octoprint.yaml:/octoprint/octoprint/config.yaml
     profiles:
       - octoprint
     labels:
@@ -125,7 +125,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - ./config:/opt/cfg
+      - /var/lib/docker/volumes/S1_prind/_data/config:/opt/cfg
 
   ## Accompanying Services/Infra
   ##
@@ -136,7 +136,7 @@ services:
     image: busybox:latest
     command: chown -R 1000:1000 /prind/config
     volumes:
-      - .:/prind
+      - /var/lib/docker/volumes/S1_prind/_data:/prind
 
   ## Loadbalancer/Proxy
   traefik:
