@@ -8,12 +8,12 @@ x-ustreamer-svc: &ustreamer-svc
 services:
   klipper:
     devices:
-      - /dev/ttymxc3:/dev/ttymxc3
+      - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
 
   webcam:
     <<: *ustreamer-svc
     devices:
-      - /dev/video0:/dev/webcam
+      - /dev/v4l/by-id/usb-046d_HD_Pro_Webcam_C920_81EC5CEF-video-index0:/dev/webcam
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.webcam.loadbalancer.server.port=8080"
