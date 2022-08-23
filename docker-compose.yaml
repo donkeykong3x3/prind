@@ -154,7 +154,7 @@ services:
 
 volumes:
   my_config:
-    read_only: false
+    - read_only: false
     #external: true
     #name: S1_config
   run:
