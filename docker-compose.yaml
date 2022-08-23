@@ -21,10 +21,10 @@ services:
       - run:/opt/run
       - gcode:/opt/gcode
       - log:/opt/log
-    profiles:
-      - fluidd
-      - mainsail
-      - klipperscreen
+    # profiles:
+      # - fluidd
+      # - mainsail
+      # - klipperscreen
 
   klipper-priv:
     <<: *klipper-svc
@@ -62,10 +62,10 @@ services:
       - log:/opt/log
       - moonraker-db:/opt/db
       - /var/lib/docker/volumes/S1_config/_data:/opt/cfg
-    profiles:
-      - fluidd
-      - mainsail
-      - klipperscreen
+    # profiles:
+      # - fluidd
+      # - mainsail
+      # - klipperscreen
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.moonraker.loadbalancer.server.port=7125"
@@ -108,8 +108,8 @@ services:
   mainsail:
     image: ghcr.io/mainsail-crew/mainsail:edge
     restart: unless-stopped
-    profiles:
-      - mainsail
+    # profiles:
+      # - mainsail
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.mainsail.loadbalancer.server.port=80"
